@@ -2,12 +2,13 @@
 
 const https = require('https');
 
-https.get('https://pokeapi.co/api/v2/', (res) => {
+https.get('https://pokeapi.co/api/v2/', res => {
   console.log('statusCode:', res.statusCode);
   console.log('headers:', res.headers);
 
-  res.on('data', (d) => {
-    process.stdout.write(d);
+  res.on('data', d => {
+    const jsonData = JSON.parse(d);
+    console.log(jsonData)
   });
 
 }).on('error', (e) => {
